@@ -1,0 +1,29 @@
+<form (ngSubmit)="onSubmit(productForm)" #productForm="ngForm">
+  <div>
+    <input
+     type="text"
+      class="form-control my-2 mx-2"
+      placeholder="name"
+      name="name"
+      [(ngModel)]="product.name"
+      #name="ngModel"  required>
+    <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+      <div>Nombre es requerido</div>
+    </div>
+  </div>
+  <div>
+    <input type="text" class="form-control my-2 mx-2" placeholder="description" name="description" [(ngModel)]="product.description" #description="ngModel"  required>
+    <div *ngIf="description.invalid && (description.dirty || description.touched)" class="alert alert-danger">
+      <div>Description es requerido</div>
+    </div>
+  </div>
+  <div>
+    <input type="text" class="form-control my-2 mx-2" placeholder="price" name="price" [(ngModel)]="product.price" #price="ngModel"  required>
+    <div *ngIf="price.invalid && (price.dirty || price.touched)" class="alert alert-danger">
+      <div>Price es requerido</div>
+    </div>
+  </div>
+  <div>
+    <button [disabled]="!productForm.form.valid" class="btn btn-primary my-2 mx-2">{{product.id > 0 ? 'update' : 'Create'}}</button>
+  </div>
+</form>

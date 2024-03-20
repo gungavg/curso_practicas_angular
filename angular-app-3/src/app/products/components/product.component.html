@@ -1,0 +1,43 @@
+<div class="container my-5">
+  <h2>Lista de productos</h2>
+  <div class="row">
+    <div class="col">
+      <product-form (newProductEvent)="addProduct($event)" [product]="productSelected" ></product-form>
+    </div>
+    <div class="col">
+      <hr />
+      <hr />
+      @if (products.length > 0){
+      <table class="table table-hover table-striped">
+        <thead>
+          <tr>
+
+            <th>name</th>
+            <th>description</th>
+            <th>price</th>
+            <th>update</th>
+            <th>remove</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for(product of products;track $index){
+          <tr>
+
+            <th>{{ product.name }}</th>
+            <th>{{ product.description }}</th>
+            <th>{{ product.price }}</th>
+            <th><button (click)="onUpdateProduct(product)" class="btn btn-sm btn-warning">update</button></th>
+            <td>
+              <button (click)="onRemoveProduct(product.id)" class="btn btn-sm btn-danger">Remove</button>
+            </td>
+          </tr>
+          }
+        </tbody>
+      </table>
+
+      }@else{
+      <div class="alert alert-info">Lo sentimos no hay registros en el sistema</div>
+      }
+    </div>
+  </div>
+</div>
